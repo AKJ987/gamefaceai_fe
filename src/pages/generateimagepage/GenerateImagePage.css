@@ -1,0 +1,407 @@
+/* ── Container Layout ────────────────────────────────── */
+.output-panel {
+  width: 100%;
+  max-width: 500px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -1rem;
+  margin-bottom: -1rem;
+}
+
+.output-header {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.page-description {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* ── Cyberpunk Frame Card ────────────────────────────── */
+.display-canvas-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: rgba(10, 8, 20, 0.7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+  transition: border-color var(--transition), box-shadow var(--transition), aspect-ratio 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.display-canvas-card.success {
+  aspect-ratio: 2 / 3;
+  width: auto;
+  height: 55vh;
+  max-width: 100%;
+  border-color: var(--border-accent);
+  box-shadow: 0 0 25px rgba(240, 192, 64, 0.1), inset 0 0 15px rgba(240, 192, 64, 0.05);
+}
+
+.display-canvas-card.error {
+  border-color: rgba(255, 85, 85, 0.5);
+}
+
+.corner-tag-id {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 0.65rem;
+  font-family: monospace;
+  color: var(--text-muted);
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+  z-index: 5;
+}
+
+.card-glare-line {
+  position: absolute;
+  top: 0;
+  left: -150%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.03), transparent);
+  transform: skewX(-25deg);
+  pointer-events: none;
+}
+.display-canvas-card.success .card-glare-line {
+  animation: shineSweep 8s infinite ease-in-out;
+}
+
+/* ── Cyberpunk Processing Loader ─────────────────────── */
+.cyber-loader-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
+  width: 80%;
+}
+
+/* High-tech Scanning Bar Overlay */
+.loader-scanner-bar {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, transparent 92%, var(--accent) 95%, transparent 100%);
+  background-size: 100% 20px;
+  opacity: 0.12;
+  pointer-events: none;
+  animation: scanDrop 2.5s infinite linear;
+  z-index: 2;
+}
+
+/* Geometric Cube Spinner Mesh */
+.spinner-cube-mesh {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 6px;
+  width: 40px;
+  height: 40px;
+  transform: rotate(45deg);
+}
+
+.cube-element {
+  width: 16px;
+  height: 16px;
+  background-color: transparent;
+  border: 1.5px solid var(--border-accent);
+  animation: meshPulse 1.2s infinite ease-in-out;
+}
+.cube-element:nth-child(1) { animation-delay: 0.0s; }
+.cube-element:nth-child(2) { animation-delay: 0.3s; }
+.cube-element:nth-child(3) { animation-delay: 0.9s; }
+.cube-element:nth-child(4) { animation-delay: 0.6s; }
+
+.terminal-log-output {
+  font-family: monospace;
+  font-size: 0.78rem;
+  color: var(--accent);
+  text-align: center;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  min-height: 1.25rem;
+}
+
+.terminal-prompt {
+  animation: blinkCursor 0.8s infinite steps(2);
+  color: var(--text-muted);
+}
+
+/* ── Output Presentation Render ─────────────────────── */
+.image-reveal-wrapper {
+  width: 100%;
+  height: 100%;
+  animation: revealResolution 0.7s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.compiled-output-render {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Error Diagnostic Frame ─────────────────────────── */
+.error-state-box {
+  text-align: center;
+  padding: 2rem;
+  color: #ff5555;
+}
+
+.error-icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 0 10px rgba(255, 85, 85, 0.4);
+}
+
+.error-state-box h3 {
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.5rem;
+}
+
+.error-state-box p {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* ── Action Rows ─────────────────────────────────────── */
+.action-button-group {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.btn-download svg {
+  width: 16px;
+  height: 16px;
+  transition: transform var(--transition);
+}
+
+.btn-download:hover svg {
+  transform: translateY(2px);
+}
+
+.error-retry {
+  background: rgba(255, 85, 85, 0.1) !important;
+  border-color: #ff5555 !important;
+  color: #ff5555 !important;
+}
+.error-retry:hover {
+  background: #ff5555 !important;
+  color: #fff !important;
+  box-shadow: 0 0 15px rgba(255, 85, 85, 0.3) !important;
+}
+
+/* ── Cyberpunk Regen Button ──────────────────────────── */
+.btn-cyber-regen {
+  position: relative;
+  margin-top: 1.5rem;
+  width: 80%;
+  padding: 0.9rem 1.5rem;
+  background: transparent;
+  border: 1px solid var(--border-accent, #f0c040);
+  color: var(--accent, #f0c040);
+  font-family: monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  cursor: pointer;
+  overflow: hidden;
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  transition: color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  /* Reset any inherited btn-primary styles */
+  border-radius: 0;
+}
+
+/* Animated diagonal sweep bg on hover */
+.btn-cyber-regen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 30%,
+    rgba(240, 192, 64, 0.08) 50%,
+    transparent 70%
+  );
+  background-size: 200% 100%;
+  background-position: -100% 0;
+  transition: background-position 0.5s ease;
+  pointer-events: none;
+}
+
+.btn-cyber-regen:hover::before {
+  background-position: 100% 0;
+}
+
+/* Solid fill + glow on hover */
+.btn-cyber-regen:hover {
+  background: rgba(240, 192, 64, 0.08);
+  box-shadow:
+    0 0 12px rgba(240, 192, 64, 0.25),
+    inset 0 0 8px rgba(240, 192, 64, 0.1);
+  color: #ffe680;
+}
+
+/* Active press */
+.btn-cyber-regen:active {
+  transform: scale(0.98);
+  box-shadow: 0 0 6px rgba(240, 192, 64, 0.15);
+}
+
+/* Label row with icon */
+.cyber-regen-label {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.cyber-regen-icon {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  transition: transform 0.4s ease;
+}
+
+.btn-cyber-regen:hover .cyber-regen-icon {
+  transform: rotate(-180deg);
+}
+
+/* Glitch ghost text — hidden by default, flickers on hover */
+.cyber-regen-glitch {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: monospace;
+  font-size: 0.82rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent, #f0c040);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+  animation: none;
+}
+
+.btn-cyber-regen:hover .cyber-regen-glitch {
+  animation: glitchFlicker 2.4s infinite;
+}
+
+/* Corner accent marks (clip-path visible corners) */
+.cyber-regen-corner {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-color: var(--accent, #f0c040);
+  border-style: solid;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+}
+.btn-cyber-regen:hover .cyber-regen-corner { opacity: 1; }
+
+.cyber-regen-corner--tl {
+  top: 3px;
+  left: 3px;
+  border-width: 1.5px 0 0 1.5px;
+}
+.cyber-regen-corner--br {
+  bottom: 3px;
+  right: 3px;
+  border-width: 0 1.5px 1.5px 0;
+}
+
+/* ── ANIMATIONS ──────────────────────────────────────── */
+@keyframes scanDrop {
+  0% { background-position: 0 -100px; }
+  100% { background-position: 0 400px; }
+}
+
+@keyframes meshPulse {
+  0%, 100% {
+    background-color: transparent;
+    border-color: var(--border-accent);
+    transform: scale(1);
+  }
+  50% {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    transform: scale(1.15);
+    box-shadow: 0 0 8px var(--accent-glow);
+  }
+}
+
+@keyframes blinkCursor {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+@keyframes shineSweep {
+  0% { left: -150%; }
+  15%, 100% { left: 150%; }
+}
+
+@keyframes revealResolution {
+  0% { opacity: 0; filter: contrast(2) brightness(0.3) blur(10px); }
+  100% { opacity: 1; filter: contrast(1) brightness(1) blur(0); }
+}
+
+@keyframes glitchFlicker {
+  0%, 90%, 100% { opacity: 0; transform: translate(0, 0); }
+  91% { opacity: 0.35; transform: translate(-2px, 0); clip-path: inset(20% 0 60% 0); }
+  92% { opacity: 0; }
+  94% { opacity: 0.2; transform: translate(2px, 0); clip-path: inset(55% 0 10% 0); }
+  95% { opacity: 0; }
+}
+
+/* ── RESPONSIVE VIEWPORTS ──────────────────────────────── */
+@media (max-width: 640px) {
+  .output-panel {
+    padding: 1.5rem 1.25rem;
+  }
+
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .display-canvas-card {
+    margin-bottom: 1.5rem;
+  }
+
+  .display-canvas-card.success {
+    height: 60vh;
+  }
+
+  .btn-primary {
+    width: 80%;
+    justify-content: center;
+  }
+
+  .btn-cyber-regen {
+    font-size: 0.75rem;
+    padding: 0.85rem 1.25rem;
+    letter-spacing: 0.13em;
+  }
+}

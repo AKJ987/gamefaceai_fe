@@ -1,0 +1,299 @@
+/* ── Page Layout & Typography ─────────────────────────── */
+.selection-panel {
+  width: 100%;
+  max-width: 1050px;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.selection-header {
+  text-align: center;
+  max-width: 650px;
+  margin: 0 auto 0.75rem auto;
+  flex-shrink: 0;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.page-description {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* ── Form & Grid Layout ────────────────────────────────── */
+.game-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-grow: 1;
+  min-height: 0;
+  gap: 1rem;
+}
+
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+  width: 100%;
+  flex-grow: 1;
+  min-height: 0;
+}
+
+.game-card-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+}
+
+.game-card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 0.65rem;
+  cursor: pointer;
+  transition: 
+    border-color var(--transition), 
+    transform var(--transition), 
+    box-shadow var(--transition);
+  user-select: none;
+}
+
+.card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  gap: 0.4rem;
+}
+
+/* ── Image Element (Top Container) ───────────────────── */
+.game-image-container {
+  width: 100%;
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  
+  flex-grow: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.game-image {
+  max-width: 100%;
+  max-height: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  transition: transform var(--transition), filter var(--transition);
+  filter: grayscale(25%) brightness(85%);
+}
+
+/* ── Title Element (Below Image) ─────────────────────── */
+.game-name {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  flex-shrink: 0;
+  padding-top: 0.2rem;
+  transition: color var(--transition);
+}
+
+/* ── Selection Indicator Badge ─────────────────────────── */
+.selection-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 0.55rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--accent);
+  color: #0a0814;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+  opacity: 0;
+  transform: translateY(-2px);
+  transition: opacity var(--transition), transform var(--transition);
+}
+
+/* ── Interactivity & Pseudo-States ─────────────────────── */
+.game-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.game-card:hover .game-image {
+  transform: scale(1.02);
+  filter: grayscale(0%) brightness(100%);
+}
+
+/* ── Pure CSS Choice-State Logic ──────────────────────── */
+input[type="radio"]:checked + .game-card {
+  border-color: var(--accent);
+  background: rgba(240, 192, 64, 0.02);
+  box-shadow: 
+    0 0 20px var(--accent-glow),
+    0 0 0 1px var(--border-accent) inset;
+}
+
+input[type="radio"]:checked + .game-card .game-name {
+  color: var(--accent);
+}
+
+input[type="radio"]:checked + .game-card .game-image {
+  filter: grayscale(0%) brightness(105%);
+}
+
+input[type="radio"]:checked + .game-card .selection-badge {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── Action Section ────────────────────────────────────── */
+.form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex-shrink: 0;
+  padding-top: 0.25rem;
+}
+
+.form-actions .btn-primary {
+  padding: 0.75rem 2.2rem;
+}
+
+.btn-primary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+  transform: none;
+  pointer-events: none;
+}
+
+.btn-primary:disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── RESPONSIVE MEDIA QUERIES ──────────────────────────── */
+
+/* Desktop Screens: Force clean full-viewport optimization with no scroll */
+@media (min-width: 851px) {
+  .selection-panel {
+    max-height: calc(100vh - 60px);
+    overflow: hidden;
+  }
+}
+
+/* Mid-Sized viewports (Small Laptops / Horizontal Tablets) */
+@media (max-width: 850px) {
+  .selection-panel {
+    padding: 1.5rem;
+    max-height: none;
+  }
+
+  .game-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+  }
+  
+  .game-image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* Handheld Mobile Displays */
+@media (max-width: 580px) {
+  .selection-panel {
+    padding: 1.25rem 1rem;
+    margin: 0.5rem 0;
+  }
+
+  .page-title {
+    font-size: 1.75rem;
+  }
+
+  .page-description {
+    font-size: 0.82rem;
+  }
+
+  .game-form {
+    gap: 1rem;
+  }
+
+  /* 2 columns on mobile — readable cards with proper touch targets */
+  .game-grid {
+    grid-template-columns: 1fr;
+    gap: 0.65rem;
+  }
+
+  .game-card {
+    padding: 0.55rem;
+    border-radius: var(--radius-sm);
+  }
+
+  .game-image-container {
+    aspect-ratio: 16 / 10;
+    height: auto;
+    flex-grow: 0; /* Let the aspect-ratio drive height, not flex */
+  }
+
+  .game-name {
+    font-size: 0.8rem;
+    line-height: 1.25;
+    padding-top: 0.15rem;
+  }
+
+  .selection-badge {
+    font-size: 0.48rem;
+    padding: 0.12rem 0.3rem;
+    top: 3px;
+    right: 3px;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* Very small phones (≤ 360px) */
+@media (max-width: 360px) {
+  .selection-panel {
+    padding: 1rem 0.75rem;
+  }
+
+  .game-grid {
+    gap: 0.5rem;
+    grid-template-columns: 1fr;
+  }
+
+  .game-card {
+    padding: 0.4rem;
+  }
+
+  .game-name {
+    font-size: 0.72rem;
+  }
+}

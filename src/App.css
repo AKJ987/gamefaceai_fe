@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+/* ── CSS Variables ─────────────────────────────────────── */
+:root {
+  --accent:        #f0c040;
+  --accent-glow:   rgba(240, 192, 64, 0.35);
+  --accent-dark:   #c89a10;
+  --surface:       rgba(10, 8, 20, 0.72);
+  --surface-light: rgba(255, 255, 255, 0.06);
+  --border:        rgba(255, 255, 255, 0.12);
+  --border-accent: rgba(240, 192, 64, 0.45);
+  --text-primary:  #f5f0e8;
+  --text-muted:    rgba(245, 240, 232, 0.55);
+  --radius-sm:     8px;
+  --radius-md:     16px;
+  --radius-lg:     28px;
+  --font-display:  'Bebas Neue', sans-serif;
+  --font-body:     'Outfit', sans-serif;
+  --transition:    0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Reset ─────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  background-color: #0a0814;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Background Slideshow ──────────────────────────────── */
+/*
+   Drop your images in /public/bg/ and name them:
+     bg1.jpg  bg2.jpg  bg3.jpg  (add more as needed)
+
+   The .bg-slide elements are stacked; JS (or the
+   BackgroundSlider component) cycles the .active class.
+   Pure CSS fallback: bg1.jpg always shows if JS is off.
+*/
+
+.bg-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: #0a0814;   /* fallback */
+}
+
+.bg-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  will-change: opacity;
+}
+
+.bg-slide.active {
+  opacity: 1;
+}
+
+/* Dark overlay on every slide */
+.bg-slide::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(5, 4, 15, 0.78) 0%,
+    rgba(10, 8, 30, 0.65) 50%,
+    rgba(5, 4, 15, 0.82) 100%
+  );
+}
+
+/* Grain texture overlay (optional but classy) */
+.bg-wrapper::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+/* ── Page Wrapper ──────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 2;           /* above bg-wrapper */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1.25rem;
+}
+
+/* ── Shared Card / Glass Panel ─────────────────────────── */
+.glass-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.04) inset,
+    0 32px 80px rgba(0,0,0,0.55);
+}
+
+/* ── Shared Button ─────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.9rem 2.4rem;
+  background: var(--accent);
+  color: #0a0814;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 1rem;
+  letter-spacing: 0.04em;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    transform var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+  box-shadow: 0 0 0 0 var(--accent-glow);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.btn-primary:hover {
+  background: #f5d060;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 8px 30px var(--accent-glow), 0 0 0 4px rgba(240,192,64,0.15);
+}
+
+.btn-primary:active {
+  transform: translateY(-1px) scale(0.99);
+}
+
+.btn-primary svg,
+.btn-primary .btn-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+/* ── Step Indicator (reusable across pages) ────────────── */
+.step-indicator {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.step-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--border);
+  transition: background var(--transition), transform var(--transition);
+}
+
+.step-dot.active {
+  background: var(--accent);
+  transform: scale(1.35);
+}
+
+.step-dot.done {
+  background: var(--accent-dark);
+}
+
+/* ── Shared Form Elements ──────────────────────────────── */
+.field-label {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 0.55rem;
+}
+
+.field-input {
+  width: 100%;
+  padding: 0.85rem 1.1rem;
+  background: var(--surface-light);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 1rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.field-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.field-input::placeholder {
+  color: var(--text-muted);
+}
+
+/* ── Utility ────────────────────────────────────────────── */
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}

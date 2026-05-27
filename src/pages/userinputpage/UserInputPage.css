@@ -1,0 +1,224 @@
+/* --- Pre-existing styles remain intact --- */
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.form-container::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+              linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
+  background-size: 100% 4px, 6px 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.form-content {
+  background: rgba(10, 10, 18, 0.75);
+  border: 1px solid #00f0ff;
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 0 15px rgba(0, 240, 255, 0.05);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  z-index: 2;
+  backdrop-filter: blur(8px);
+}
+
+.form-title {
+  font-size: 2.2rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+  text-shadow: 0 0 8px #00f0ff;
+  margin-bottom: 12px;
+  letter-spacing: 1px;
+}
+
+.form-description {
+  font-size: 1rem;
+  color: #8ce8ff;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.cyber-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: left;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: #ff007f;
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(255, 0, 127, 0.5);
+}
+
+/* Modifying standard input colors to synchronize with dropdown aesthetics */
+.cyber-input {
+  background: rgba(20, 20, 35, 0.8);
+  border: 1px solid #00f0ff;
+  color: #8ce8ff; /* Updated: Changed text color matching dropdown descriptions */
+  padding: 12px 15px;
+  font-size: 1rem;
+  letter-spacing: 1.5px;
+  transition: all 0.3s ease;
+  outline: none;
+  border-radius: 0px;
+}
+
+.cyber-input:focus {
+  border-color: #ff007f;
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.5);
+  background: rgba(30, 15, 40, 0.9);
+  color: #fff; /* Shifts bright when typing */
+}
+
+
+/* --- Custom Cyberpunk Dropdown Architecture --- */
+
+.custom-cyber-dropdown {
+  position: relative;
+  width: 100%;
+  user-select: none;
+}
+
+.cyber-select-trigger {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(20, 20, 35, 0.8);
+  border: 1px solid #00f0ff;
+  color: #8ce8ff; /* Matched colors */
+  padding: 12px 15px;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.cyber-select-trigger.placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.cyber-select-trigger:hover,
+.cyber-select-trigger.active {
+  border-color: #ff007f;
+  box-shadow: 0 0 12px rgba(255, 0, 127, 0.4);
+  background: rgba(30, 15, 40, 0.9);
+  color: #fff;
+}
+
+.arrow-indicator {
+  font-size: 0.75rem;
+  color: #ff007f;
+  transition: transform 0.3s ease;
+  text-shadow: 0 0 5px #ff007f;
+}
+
+.cyber-select-trigger.active .arrow-indicator {
+  transform: rotate(180deg);
+}
+
+/* Custom overlay list container */
+.cyber-options-menu {
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+  width: 100%;
+  background: rgba(14, 5, 28, 0.95);
+  border: 1px solid #ff007f;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.3), inset 0 0 10px rgba(0, 240, 255, 0.1);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  z-index: 10;
+  backdrop-filter: blur(10px);
+}
+
+/* Custom List Item styling with a sharp neon block hover effect */
+.cyber-option {
+  padding: 12px 15px;
+  font-size: 1rem;
+  color: #8ce8ff;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px dashed rgba(255, 0, 127, 0.15);
+}
+
+.cyber-option:last-child {
+  border-bottom: none;
+}
+
+.cyber-option:hover {
+  background: #ff007f;
+  color: #fff;
+  text-shadow: 0 0 5px #fff;
+  padding-left: 20px; /* Slight nudge forward on choice selection */
+}
+
+
+/* --- Remaining original code --- */
+
+.cyber-next-btn {
+  background: transparent;
+  color: #fff;
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 14px;
+  border: 2px solid #ff007f;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(255, 0, 127, 0.3);
+  letter-spacing: 2px;
+}
+
+.cyber-next-btn:not(:disabled):hover {
+  background-color: #ff007f;
+  box-shadow: 0 0 25px #ff007f, 0 0 8px #00f0ff;
+  text-shadow: 0 0 5px #fff;
+  cursor: pointer;
+}
+
+.cyber-next-btn:disabled {
+  border-color: #444;
+  color: #666;
+  box-shadow: none;
+}
+
+@media (max-width: 600px) {
+  .form-content {
+    padding: 30px 20px;
+    border-left: none;
+    border-right: none;
+    background: rgba(10, 10, 18, 0.85);
+  }
+
+  .form-title {
+    font-size: 1.8rem;
+  }
+
+  .form-description {
+    font-size: 0.95rem;
+  }
+}

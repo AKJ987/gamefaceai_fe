@@ -1,0 +1,245 @@
+/* ── Page Layout & Typography ─────────────────────────── */
+.capture-panel {
+  width: 100%;
+  max-width: 580px; /* Kept focused and narrow for portrait balance */
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.capture-header {
+  text-align: center;
+  max-width: 460px;
+  margin-bottom: 1.5rem;
+}
+
+.page-title {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  letter-spacing: 0.06em;
+  color: var(--text-primary);
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+}
+
+.page-description {
+  font-size: 0.88rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+/* ── Cyberpunk Round HUD Viewfinder ──────────────────── */
+.hud-viewfinder-wrapper {
+  position: relative;
+  width: 280px;
+  height: 280px;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Tech Rings and Overlays */
+.hud-ring-outer {
+  position: absolute;
+  inset: -8px;
+  border: 1px dashed rgba(240, 192, 64, 0.25);
+  border-radius: 50%;
+  animation: spinClockwise 25s linear infinite;
+}
+
+.hud-ring-inner {
+  position: absolute;
+  inset: -2px;
+  border: 2px double var(--border-accent);
+  border-radius: 50%;
+  box-shadow: 0 0 20px var(--accent-glow);
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Target Crosshair Corners */
+.hud-bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 2px solid var(--accent);
+  z-index: 4;
+  pointer-events: none;
+}
+.top-left { top: -14px; left: -14px; border-right: none; border-bottom: none; }
+.top-right { top: -14px; right: -14px; border-left: none; border-bottom: none; }
+.bottom-left { bottom: -14px; left: -14px; border-right: none; border-top: none; }
+.bottom-right { bottom: -14px; right: -14px; border-left: none; border-top: none; }
+
+/* The Circle Mask Frame Core */
+.viewfinder-core {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  overflow: hidden;
+  background: #05040f;
+  border: 2px solid var(--border);
+  position: relative;
+  z-index: 2;
+}
+
+.viewfinder-element {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Mirror the video camera view for human ergonomics */
+  transform: scaleX(-1); 
+}
+
+.live-video {
+  background: #000;
+}
+
+.captured-preview {
+  animation: flashGlitch 0.4s ease-out;
+}
+
+.camera-error-message {
+  padding: 2rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: #ff5555;
+  font-family: var(--font-body);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+/* ── Shutter Action Buttons ────────────────────────────── */
+.shutter-control-box {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-shutter {
+  background: transparent;
+  outline: none;
+  cursor: pointer;
+  font-family: var(--font-body);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all var(--transition);
+}
+
+/* Capture State (Target Button) */
+.btn-shutter.capture {
+  border: 1px solid var(--border-accent);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-sm);
+  color: var(--accent);
+  background: rgba(240, 192, 64, 0.03);
+}
+
+.btn-shutter.capture:hover:not(:disabled) {
+  background: var(--accent);
+  color: #0a0814;
+  box-shadow: 0 0 15px var(--accent-glow);
+}
+
+.btn-shutter.capture:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  border-color: var(--border);
+  color: var(--text-muted);
+}
+
+.shutter-dot {
+  width: 8px;
+  height: 8px;
+  background: #ff3333;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff3333;
+}
+.btn-shutter.capture:hover .shutter-dot {
+  background: #0a0814;
+  box-shadow: none;
+}
+
+/* Retake State */
+.btn-shutter.retake {
+  border: 1px solid rgba(255, 50, 50, 0.4);
+  padding: 0.6rem 1.5rem;
+  border-radius: var(--radius-sm);
+  color: #ff5555;
+  background: rgba(255, 50, 50, 0.05);
+}
+
+.btn-shutter.retake:hover {
+  background: #ff5555;
+  color: #ffffff;
+  box-shadow: 0 0 15px rgba(255, 50, 50, 0.3);
+  border-color: #ff5555;
+}
+
+.btn-shutter.retake svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* ── Global Submit Route Row ───────────────────────────── */
+.form-actions {
+  width: 100%;
+  border-top: 1px solid var(--border);
+  padding-top: 1.5rem;
+  display: flex;
+  justify-content: center;
+}
+
+.form-actions .btn-primary:disabled {
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ── TECH ANIMATIONS ───────────────────────────────────── */
+@keyframes spinClockwise {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes flashGlitch {
+  0% { filter: brightness(3) contrast(1.5) saturate(0); transform: scaleX(-1) scale(1.1); }
+  50% { filter: brightness(0.5) contrast(2); }
+  100% { filter: brightness(1) contrast(1); transform: scaleX(-1) scale(1); }
+}
+
+/* ── RESPONSIVE VIEWPORTS ──────────────────────────────── */
+@media (max-width: 640px) {
+  .capture-panel {
+    padding: 1.5rem 1.25rem;
+    margin: 1rem 0;
+  }
+  
+  .page-title {
+    font-size: 2rem;
+  }
+
+  .hud-viewfinder-wrapper {
+    width: 230px;
+    height: 230px;
+    margin-bottom: 2rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+}

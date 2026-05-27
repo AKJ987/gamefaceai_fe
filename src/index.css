@@ -1,0 +1,41 @@
+/* --- Reset & Base Styles --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+  /* Cyberpunk dark ambient colors that shift smoothly */
+  background: linear-gradient(135deg, #0a0a12, #120224, #03161c, #0a0a12);
+  background-size: 400% 400%;
+  animation: cyberPulse 12s ease infinite;
+  color: #ffffff;
+}
+
+/* --- Pure CSS Smooth Background Shift --- */
+@keyframes cyberPulse {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* --- Global Cyberpunk Utilities (Optional for next pages) --- */
+.neon-text-blue {
+  text-shadow: 0 0 10px #00f0ff, 0 0 20px #00f0ff;
+}
+
+.neon-text-pink {
+  text-shadow: 0 0 10px #ff007f, 0 0 20px #ff007f;
+}
