@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router';
 import './App.css';
-import { LandingPage } from './pages/landingpage/landingpage';
+import { LandingPage } from './pages/landingpage/LandingPage';
 import { UserInputPage } from './pages/userinputpage/UserInputPage';
 import { StyleSelectionPage } from './pages/styleselectionpage/StyleSelectionPage';
 import { GameSelectionPage } from './pages/gameselectionpage/GameSelectionPage';
