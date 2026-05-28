@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { api } from '../../utils/axios';
 import { useFlow } from '../../utils/FlowContext';
 import './GenerateImagePage.css'
 
@@ -40,7 +40,7 @@ export function GenerateImagePage() {
         formDataToSend.append("game", game);
         formDataToSend.append("image", image);
 
-        const response = await axios.post('/api/v1/game/face/ai/', formDataToSend);
+        const response = await api.post('/api/v1/game/face/ai/', formDataToSend);
         const base64Image = `data:image/png;base64,${response.data.image}`;
         
         setGeneratedImage(base64Image);
