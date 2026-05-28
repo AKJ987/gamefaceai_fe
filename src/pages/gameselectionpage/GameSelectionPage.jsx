@@ -1,6 +1,16 @@
 import { useNavigate } from 'react-router';
 import { useFlow } from '../../utils/FlowContext';
 import './GameSelectionPage.css'
+import unchartedImg from '../../assets/uncharted.jpg';
+import cyberpunkImg from '../../assets/cyberpunk.jpg';
+import ghostOfTsushimaImg from '../../assets/ghost_of_tsushima.jpg';
+import mafiaImg from '../../assets/mafia.jpg';
+
+import readDeadRedemptionImg from '../../assets/read_dead_redemption.jpg';
+import gtaViceCityImg from '../../assets/gta_vice_city.png';
+import totalOverdoseImg from '../../assets/total_overdose.jpg';
+import sleepingDogsImg from '../../assets/sleeping_dogs.jpg';
+import assassinsCreedImg from '../../assets/assassin_creed.jpg';
 
 export function GameSelectionPage() {
     const navigate = useNavigate();
@@ -39,7 +49,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_1" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/uncharted.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={unchartedImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Uncharted 4</h2>
                                         <div className="selection-badge">Linked</div>
@@ -52,7 +62,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_2" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/cyberpunk.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={cyberpunkImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Cyberpunk 2077</h2>
                                         <div className="selection-badge">Linked</div>
@@ -65,7 +75,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_3" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/ghost_of_tsushima.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={ghostOfTsushimaImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Ghost Of Tsushima</h2>
                                         <div className="selection-badge">Linked</div>
@@ -78,7 +88,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_4" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/mafia.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={mafiaImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Mafia 3</h2>
                                         <div className="selection-badge">Linked</div>
@@ -91,7 +101,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_5" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/read_dead_redemption.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={readDeadRedemptionImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Read Dead Redemption 2</h2>
                                         <div className="selection-badge">Linked</div>
@@ -104,7 +114,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_6" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/gta_vice_city.png" alt="Game Universe Preview" className="game-image" />
+                                            <img src={gtaViceCityImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">GTA Vice City</h2>
                                         <div className="selection-badge">Linked</div>
@@ -117,7 +127,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_7" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/total_overdose.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={totalOverdoseImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Total Overdose</h2>
                                         <div className="selection-badge">Linked</div>
@@ -130,7 +140,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_8" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/sleeping_dogs.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={sleepingDogsImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Sleeping Dogs</h2>
                                         <div className="selection-badge">Linked</div>
@@ -143,7 +153,7 @@ export function GameSelectionPage() {
                                 <label htmlFor="game_9" className="game-card">
                                     <div className="card-inner">
                                         <div className="game-image-container">
-                                            <img src="src/assets/assassin_creed.jpg" alt="Game Universe Preview" className="game-image" />
+                                            <img src={assassinsCreedImg} alt="Game Universe Preview" className="game-image" />
                                         </div>
                                         <h2 className="game-name">Assassin's Creed</h2>
                                         <div className="selection-badge">Linked</div>

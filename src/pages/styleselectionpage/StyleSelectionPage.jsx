@@ -1,6 +1,9 @@
 import { useNavigate } from 'react-router';
 import { useFlow } from '../../utils/FlowContext';
 import './StyleSelectionPage.css'
+import ghibliImg from '../../assets/ghibli.png';
+import legoImg from '../../assets/lego.png';
+import actionFigureImg from '../../assets/action_figure.png';
 
 export function StyleSelectionPage() {
     const navigate = useNavigate();
@@ -40,7 +43,7 @@ export function StyleSelectionPage() {
                                     <div className="card-inner">
                                         <h2 className="style-name">Ghibli</h2>
                                         <div className="style-image-container">
-                                            <img src="src/assets/ghibili.png" alt="Ghibli Style Preview" className="style-image" />
+                                            <img src={ghibliImg} alt="Ghibli Style Preview" className="style-image" />
                                         </div>
                                         <div className="selection-badge">Selected</div>
                                     </div>
@@ -53,7 +56,7 @@ export function StyleSelectionPage() {
                                     <div className="card-inner">
                                         <h2 className="style-name">Lego</h2>
                                         <div className="style-image-container">
-                                            <img src="src/assets/lego.png" alt="Lego Style Preview" className="style-image" />
+                                            <img src={legoImg} alt="Lego Style Preview" className="style-image" />
                                         </div>
                                         <div className="selection-badge">Selected</div>
                                     </div>
@@ -66,7 +69,7 @@ export function StyleSelectionPage() {
                                     <div className="card-inner">
                                         <h2 className="style-name">Action Figure</h2>
                                         <div className="style-image-container">
-                                            <img src="src/assets/action_figure.png" alt="Action Figure Style Preview" className="style-image" />
+                                            <img src={actionFigureImg} alt="Action Figure Style Preview" className="style-image" />
                                         </div>
                                         <div className="selection-badge">Selected</div>
                                     </div>
